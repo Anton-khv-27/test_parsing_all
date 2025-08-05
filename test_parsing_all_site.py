@@ -145,10 +145,3 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
-
-
-
-
-
-
-
