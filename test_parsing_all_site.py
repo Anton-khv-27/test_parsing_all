@@ -16,10 +16,13 @@ driver.maximize_window()
 load_dotenv()
 
 # Настройка Selenium
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+
+driver = webdriver.Chrome(options=options)
 
 driver = webdriver.Chrome(options=chrome_options)
 start_time = time()
@@ -141,5 +144,6 @@ if total_errors > 0:
 
 # Не закрываем сразу, чтобы увидеть результат
 input("Нажмите Enter для выхода...")
+
 
 driver.quit()
