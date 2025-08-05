@@ -34,7 +34,7 @@ username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
 
 # Вводим логин и пароль
-username_input.send_keys(os.environ["login"])  # Вставь свои данные
+username_input.send_keys(os.environ["LOGIN"])  # Вставь свои данные
 password_input.send_keys(os.environ["password"])  # Вставь свои данные
 
 # Нажимаем кнопку входа
@@ -144,6 +144,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
