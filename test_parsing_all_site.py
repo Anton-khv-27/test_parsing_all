@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
 #driver = webdriver.Chrome()
-driver.maximize_window()
+#driver.maximize_window()
 load_dotenv()
 
 # Настройка Chrome в headless режиме
@@ -144,6 +144,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
