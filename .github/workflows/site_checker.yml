@@ -1,37 +1,31 @@
 name: Site Checker
 
 on:
-  schedule:
-    - cron: '0 6 * * *'  # каждый день в 6:00 UTC (9:00 по МСК)
-  workflow_dispatch:      # запуск вручную из GitHub UI
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  run-checker:
+  check-site:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: 📥 Checkout репозиторий
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: 🐍 Установить Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
+      - name: 📦 Установить зависимости
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Chrome
+      - name: 🔐 Загрузить переменные окружения (.env)
         run: |
-          sudo apt update
-          sudo apt install -y chromium-browser
-        continue-on-error: true  # иногда уже установлен
+          echo "${{ secrets.ENV_FILE }}" > .env
 
-      - name: Run site checker
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: |
-          export PATH=$PATH:/usr/bin
-          python test_parsing_all_site.py
+      - name: 🚀 Запустить скрипт проверки
+        run: python test_parsing_all_site.py
