@@ -12,8 +12,8 @@ jobs:
     env:
       login: ${{ secrets.login }}
       password: ${{ secrets.password }}
-      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      bot_token: ${{ secrets.bot_token }}
+      chat_id: ${{ secrets.chat_id }}
 
     steps:
       - name: 📥 Checkout репозитория
