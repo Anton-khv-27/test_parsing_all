@@ -1,0 +1,5 @@
+env:
+  login: ${{ secrets.login }}
+  password: ${{ secrets.password }}
+  BOT_TOKEN: ${{ secrets.bot_token }}
+  CHAT_ID: ${{ secrets.chat_id }}
