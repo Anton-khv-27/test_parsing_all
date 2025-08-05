@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 import os
@@ -34,7 +35,7 @@ username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
 
 # Вводим логин и пароль
-username_input.send_keys(os.environ["LOGIN"])  # Вставь свои данные
+username_input.send_keys(os.environ["login"])  # Вставь свои данные
 password_input.send_keys(os.environ["password"])  # Вставь свои данные
 
 # Нажимаем кнопку входа
@@ -144,6 +145,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
