@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException, , TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 import os
 from time import time
@@ -11,21 +11,18 @@ import csv
 from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
-driver = webdriver.Chrome()
+#driver = webdriver.Chrome()
 driver.maximize_window()
 load_dotenv()
 
-# Настройка Selenium
+# Настройка Chrome в headless режиме
 options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--user-data-dir=/tmp/chrome-data')  # уникальная временная директория
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
 
 driver = webdriver.Chrome(options=options)
 
-driver = webdriver.Chrome(options=chrome_options)
 start_time = time()
 
 # Переход на сайт
@@ -144,8 +141,8 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 # Не закрываем сразу, чтобы увидеть результат
-input("Нажмите Enter для выхода...")
-
+#input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
