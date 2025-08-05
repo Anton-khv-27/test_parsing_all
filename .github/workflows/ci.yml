@@ -1,44 +1,30 @@
-name: Check all pages
+name: CI
 
 on:
   push:
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     env:
-      login: ${{ secrets.LOGIN }}
-      password: ${{ secrets.PASSWORD }}
-      bot_token: ${{ secrets.BOT_TOKEN }}
-      chat_id: ${{ secrets.CHAT_ID }}
-
+      login: ${{ secrets.login }}
+      password: ${{ secrets.password }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.10
 
       - name: Install dependencies
         run: |
-          pip install selenium python-dotenv requests
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Install Chrome & ChromeDriver
+      - name: Run tests
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install -y ./google-chrome-stable_current_amd64.deb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | grep -B2 "$CHROME_VERSION" | grep "version" | head -n 1 | grep -oP '\d+\.\d+\.\d+\.\d+')
-          wget -O chromedriver.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          unzip chromedriver.zip
-          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
-
-      - name: Run parsing script
-        run: python test_parsing_all_site.py
+          python test_parsing_all_site.py
