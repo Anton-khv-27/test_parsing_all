@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import WebDriverException, TimeoutException
+from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support import expected_conditions as EC
 import os
 from time import time
@@ -12,26 +12,24 @@ import csv
 from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
-#driver = webdriver.Chrome()
-#driver.maximize_window()
+driver = webdriver.Chrome()
+driver.maximize_window()
 load_dotenv()
 
-# Настройка Chrome в headless режиме
-options = Options()
-options.add_argument('--headless=new')
-options.add_argument('--start-maximized')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
+# Настройка Selenium
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome(options=options)
-
-#start_time = time()
+#driver = webdriver.Chrome(options=chrome_options)
+start_time = time()
 
 # Переход на сайт
 driver.get("https://test.rozentalgroup.ru/demo/authorization/")
 
 # Ожидание загрузки поля логина
-wait = WebDriverWait(driver, 15)
+wait = WebDriverWait(driver, 10)
 username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
 
@@ -52,6 +50,7 @@ URLS = [
     "https://test.rozentalgroup.ru/demo/dispetcher/executors/absence-schedule/",
     "https://test.rozentalgroup.ru/demo/dispetcher/users/",
     "https://test.rozentalgroup.ru/demo/dispetcher/handbook/companies/",
+    "https://abracadabra.vvv"
 ]
 
 # 📁 Файл для сохранения ошибок
@@ -146,8 +145,3 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
-
-
-
-
-
