@@ -1,3 +1,4 @@
 selenium
 requests
 python-dotenv
+selenium>=4.15.0
