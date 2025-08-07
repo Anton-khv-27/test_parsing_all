@@ -13,15 +13,22 @@ from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
 driver = webdriver.Chrome()
-driver.maximize_window()
+#driver.maximize_window()
 load_dotenv()
 
 # Настройка Selenium
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+# Настройка опций для Chrome в headless-режиме
+options = Options()
+options.add_argument('--headless=new')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--window-size=1920,1080')
 
+# Уникальный профиль пользователя для каждой сессии
+options.add_argument(f'--user-data-dir={tempfile.mkdtemp()}')
+
+# Запуск драйвера
+driver = webdriver.Chrome(options=options)
 #driver = webdriver.Chrome(options=chrome_options)
 start_time = time()
 
@@ -145,3 +152,4 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
