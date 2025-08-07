@@ -31,7 +31,7 @@ driver = webdriver.Chrome(options=options)
 driver.get("https://test.rozentalgroup.ru/demo/authorization/")
 
 # Ожидание загрузки поля логина
-wait = WebDriverWait(driver, 10)
+wait = WebDriverWait(driver, 15)
 username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
 
@@ -146,6 +146,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
