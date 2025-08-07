@@ -12,7 +12,7 @@ import csv
 from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
-#driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 #driver.maximize_window()
 load_dotenv()
 
@@ -145,3 +145,4 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
