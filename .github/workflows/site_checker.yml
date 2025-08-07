@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:  # ✅ Добавлен запуск вручную с кнопки в GitHub UI
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-    # ✅ Передаём secrets как переменные окружения
     env:
       login: ${{ secrets.login }}
       password: ${{ secrets.password }}
