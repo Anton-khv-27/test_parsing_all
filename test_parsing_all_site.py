@@ -18,13 +18,13 @@ load_dotenv()
 
 # Настройка Chrome в headless режиме
 options = Options()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
+options.add_argument('--headless')  # Безголовый режим для GitHub Actions
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
 
 driver = webdriver.Chrome(options=options)
 
-start_time = time()
+#start_time = time()
 
 # Переход на сайт
 driver.get("https://test.rozentalgroup.ru/demo/authorization/")
@@ -145,5 +145,6 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
