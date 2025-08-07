@@ -12,7 +12,7 @@ import csv
 from dotenv import load_dotenv
 
 # Настройка драйвера (для Chrome)
-driver = webdriver.Chrome()
+#driver = webdriver.Chrome()
 #driver.maximize_window()
 load_dotenv()
 
@@ -22,7 +22,7 @@ options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
-#driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(options=options)
 
 start_time = time()
 
@@ -145,4 +145,5 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
