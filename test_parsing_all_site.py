@@ -43,6 +43,8 @@ driver.get("https://test.rozentalgroup.ru/demo/authorization/")
 wait = WebDriverWait(driver, 10)
 username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 # Вводим логин и пароль
 username_input.send_keys(os.environ["login"])  # Вставь свои данные
@@ -156,6 +158,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
