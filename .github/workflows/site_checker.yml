@@ -1,39 +1,32 @@
-name: CI
+name: Selenium Parsing Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      login: ${{ secrets.login }}
-      password: ${{ secrets.password }}
-      bot_token: ${{ secrets.bot_token }}
-      chat_id: ${{ secrets.chat_id }}
-
     steps:
-      - name: 📥 Checkout репозитория
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: 🐍 Установка Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: 🔧 Установка Google Chrome
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+          pip install selenium requests
 
-      - name: 📦 Установка зависимостей
+      - name: Install ChromeDriver
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+' | head -1)
+          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE")
+          wget "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
+          sudo chmod +x /usr/bin/chromedriver
 
-      - name: 🧪 Запуск тестов
-        run: |
-          python test_parsing_all_site.py
+      - name: Run Selenium test
+        run: python test_parsing_all_site.py
