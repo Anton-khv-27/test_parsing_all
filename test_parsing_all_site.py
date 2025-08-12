@@ -43,12 +43,12 @@ driver.get("https://test.rozentalgroup.ru/demo/authorization/")
 wait = WebDriverWait(driver, 10)
 username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
 
 # Вводим логин и пароль
 username_input.send_keys(os.environ["login"])  # Вставь свои данные
 password_input.send_keys(os.environ["password"])  # Вставь свои данные
+BOT_TOKEN = os.environ("BOT_TOKEN")
+CHAT_ID = os.environ("CHAT_ID")
 
 # Нажимаем кнопку входа
 login_button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
@@ -73,8 +73,8 @@ CSV_FILE = "bad_links.csv"
 bad_pages = []
 
 # === Настройки Telegram ===
-BOT_TOKEN = os.getenv("bot_token")
-CHAT_ID = os.getenv("chat_id")
+#BOT_TOKEN = os.getenv("bot_token")
+#CHAT_ID = os.getenv("chat_id")
 
 # Отправка текстового сообщения в Telegram
 def send_telegram_message(text):
@@ -158,6 +158,7 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
 
 
