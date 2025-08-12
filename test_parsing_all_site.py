@@ -146,10 +146,3 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 driver.quit()
-
-
-
-
-
-
-
