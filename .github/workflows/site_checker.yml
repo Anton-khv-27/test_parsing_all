@@ -30,8 +30,10 @@ jobs:
 
       - name: Create .env file from secrets
         run: |
-          echo "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" >> .env
-          echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
+          echo "TOKEN=${{ secrets.TOKEN }}" >> .env
+          echo "CHAT_ID=${{ secrets.CHAT_ID }}" >> .env
+          echo "login=${{ secrets.LOGIN }}" >> .env
+          echo "password=${{ secrets.PASSWORD }}" >> .env
 
       - name: Run Selenium test
         run: python test_parsing_all_site.py
