@@ -13,12 +13,8 @@ import csv
 from dotenv import load_dotenv
 import tempfile
 
-# Настройка драйвера (для Chrome)
-#driver = webdriver.Chrome()
-#driver.maximize_window()
 load_dotenv()
 
-# Настройка Selenium
 # Настройка опций для Chrome в headless-режиме
 options = Options()
 options.add_argument('--headless=new')
@@ -33,7 +29,6 @@ options.add_argument(f'--user-data-dir={tempfile.mkdtemp()}')
 
 # Запуск драйвера
 driver = webdriver.Chrome(options=options)
-#driver = webdriver.Chrome(options=chrome_options)
 start_time = time()
 
 # Переход на сайт
@@ -44,9 +39,9 @@ wait = WebDriverWait(driver, 10)
 username_input = wait.until(EC.presence_of_element_located((By.NAME, "login")))
 password_input = driver.find_element(By.NAME, "password")
 
-# Вводим логин и пароль
-username_input.send_keys(os.environ["login"])  # Вставь свои данные
-password_input.send_keys(os.environ["password"])  # Вставь свои данные
+# Заполняем переменные из Secrets
+username_input.send_keys(os.environ["login"])
+password_input.send_keys(os.environ["password"])
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 
@@ -71,10 +66,6 @@ CSV_FILE = "bad_links.csv"
 
 # 🧾 Храним найденные ошибки
 bad_pages = []
-
-# === Настройки Telegram ===
-#BOT_TOKEN = os.getenv("bot_token")
-#CHAT_ID = os.getenv("chat_id")
 
 # Отправка текстового сообщения в Telegram
 def send_telegram_message(text):
@@ -154,10 +145,8 @@ send_telegram_message(summary)
 if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
-# Не закрываем сразу, чтобы увидеть результат
-#input("Нажмите Enter для выхода...")
-
 driver.quit()
+
 
 
 
