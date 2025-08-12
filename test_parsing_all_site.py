@@ -10,9 +10,10 @@ from time import time
 import requests
 import csv
 from dotenv import load_dotenv
+import tempfile
 
 # Настройка драйвера (для Chrome)
-driver = webdriver.Chrome()
+#driver = webdriver.Chrome()
 #driver.maximize_window()
 load_dotenv()
 
@@ -25,6 +26,8 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--window-size=1920,1080')
 
 # Уникальный профиль пользователя для каждой сессии
+service = Service("/usr/bin/chromedriver")  # путь в GitHub Actions
+driver = webdriver.Chrome(service=service, options=options)
 options.add_argument(f'--user-data-dir={tempfile.mkdtemp()}')
 
 # Запуск драйвера
@@ -152,4 +155,5 @@ if total_errors > 0:
 #input("Нажмите Enter для выхода...")
 
 driver.quit()
+
 
