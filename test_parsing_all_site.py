@@ -58,6 +58,26 @@ URLS = [
     "https://test.rozentalgroup.ru/demo/dispetcher/executors/absence-schedule/",
     "https://test.rozentalgroup.ru/demo/dispetcher/users/",
     "https://test.rozentalgroup.ru/demo/dispetcher/handbook/companies/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/houses/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/activeTreatments/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/messenger/?section=active",
+    "https://test.rozentalgroup.ru/demo/dispetcher/treatments/paid/#/?section=paid",
+    "https://test.rozentalgroup.ru/demo/dispetcher/task-schedule/journal/?s=in_progress",
+    "https://test.rozentalgroup.ru/demo/dispetcher/task-schedule/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/task-schedule/types/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/easy-life/journal/?section=all",
+    "https://test.rozentalgroup.ru/demo/dispetcher/easy-life/messenger/?section=active",
+    "https://test.rozentalgroup.ru/demo/dispetcher/debtors/dashboard/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/debtors/?list=all",
+    "https://test.rozentalgroup.ru/demo/dispetcher/debtors/analytics/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/debtors/gis/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/passes/?section=one-time",
+    "https://test.rozentalgroup.ru/demo/dispetcher/notifications/?s=active",
+    "https://test.rozentalgroup.ru/demo/dispetcher/inventory/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/module_vote/?page=1&section=all#/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/settings/?section=treatments",
+    "https://test.rozentalgroup.ru/demo/dispetcher/data_loading/",
+    "https://test.rozentalgroup.ru/demo/dispetcher/personal_accounts/?page=1&per_page=30",
     "https://abracadabra.vvv"
 ]
 
@@ -146,3 +166,4 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 driver.quit()
+
