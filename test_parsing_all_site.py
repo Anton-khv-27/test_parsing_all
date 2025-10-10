@@ -120,7 +120,7 @@ def send_telegram_file(file_path, caption="Файл"):
     except Exception as e:
         print(f"[Telegram ❗] Ошибка при отправке файла: {e}")
 
- # Проверка всех URL
+# Проверка всех URL
 #for url in URLS:
 #    try:
 #        driver.get(url)
@@ -206,4 +206,5 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 driver.quit()
+
 
