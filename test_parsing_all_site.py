@@ -78,7 +78,8 @@ URLS = [
     "https://dev.rozentalgroup.ru/demo/dispetcher/module_vote/?page=1&section=all#/",
     "https://dev.rozentalgroup.ru/demo/dispetcher/settings/?section=treatments",
     "https://dev.rozentalgroup.ru/demo/dispetcher/data_loading/",
-    "https://test.rozentalgroup.ru/demo/dispetcher/personal_accounts/?page=1&per_page=30",
+#    "https://testing.rozentalgroup.ru/demo/dispetcher/inventory/",
+#    "https://test.rozentalgroup.ru/demo/dispetcher/personal_accounts/?page=1&per_page=30",
     "https://abracadabra.vvv"
 ]
 
@@ -205,3 +206,4 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 driver.quit()
+
