@@ -33,7 +33,7 @@ driver = webdriver.Chrome(options=options)
 start_time = time()
 
 # Переход на сайт
-driver.get("https://testing.rozentalgroup.ru/demo/authorization/")
+driver.get("https://dev.rozentalgroup.ru/demo/authorization/")
 
 # Ожидание загрузки поля логина
 wait = WebDriverWait(driver, 10)
@@ -51,7 +51,7 @@ login_button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
 login_button.click()
 
 # Ждём редиректа/результата
-wait.until(EC.url_changes("https://testing.rozentalgroup.ru/demo/authorization/"))
+wait.until(EC.url_changes("https://dev.rozentalgroup.ru/demo/authorization/"))
 
 # 🔗 Статически заданные ссылки (можно заменить на кортеж)
 URLS = [
@@ -78,9 +78,8 @@ URLS = [
     "https://dev.rozentalgroup.ru/demo/dispetcher/module_vote/?page=1&section=all#/",
     "https://dev.rozentalgroup.ru/demo/dispetcher/settings/?section=treatments",
     "https://dev.rozentalgroup.ru/demo/dispetcher/data_loading/",
-    "https://testing.rozentalgroup.ru/demo/dispetcher/inventory/",
-    "https://test.rozentalgroup.ru/demo/dispetcher/personal_accounts/?page=1&per_page=30",
-    "https://abracadabra.vvv"
+#    "https://testing.rozentalgroup.ru/demo/dispetcher/inventory/",
+     "https://abracadabra.vvv"
 ]
 
 # 📁 Файл для сохранения ошибок
@@ -119,19 +118,6 @@ def send_telegram_file(file_path, caption="Файл"):
             print(f"[Telegram ❌] Ошибка отправки файла: {response.text}")
     except Exception as e:
         print(f"[Telegram ❗] Ошибка при отправке файла: {e}")
-
-# Проверка всех URL
-#for url in URLS:
-#    try:
-#        driver.get(url)
-#        if (
-#            "404" in driver.title or
-#            "ошибка" in driver.title.lower() or
-#            "not found" in driver.page_source.lower()
-#        ):
-#            bad_pages.append([url, "Обнаружена ошибка на странице", "Ключевое слово в title/page"])
-#    except WebDriverException as e:
-#        bad_pages.append([url, "Ошибка загрузки страницы", str(e)])
 
 for url in URLS:
     try:
@@ -206,5 +192,3 @@ if total_errors > 0:
     send_telegram_file(CSV_FILE, caption="📄 Проблемные страницы")
 
 driver.quit()
-
-
