@@ -20,22 +20,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      # Полная очистка кэша и временных файлов
-      - name: Clean caches and temp files
-        run: |
-          echo "Очистка кеша и временных директорий..."
-          rm -rf ~/.cache
-          rm -rf /tmp/*
-          rm -rf /home/runner/.wdm
-          echo "Очистка завершена ✅"
-
-      # Проверяем, что запускается актуальная версия файла
-      - name: Show current script version
-        run: |
-          echo "=== Содержимое From_Git_Parsing.py ==="
-          head -n 40 From_Git_Parsing.py
-          echo "=== Конец вывода ==="
     
       - name: Install dependencies
         run: |
